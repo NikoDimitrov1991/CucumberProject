@@ -37,7 +37,7 @@ public class GreenKartStepDefinition {
 
 
     @Then("user search for {string} shortname in offers page")
-    public void user_search_for_same_shortname_in_offers_page_to_check_if_product_exist(String shortName) {
+    public void user_search_for_same_shortname_in_offers_page(String shortName) throws InterruptedException {
         driver.findElement(By.linkText("Top Deals")).click();
         Set<String> s1 = driver.getWindowHandles();
         Iterator<String> iterator = s1.iterator();
@@ -45,6 +45,7 @@ public class GreenKartStepDefinition {
         String childWindow = iterator.next();
         driver.switchTo().window(childWindow);
         driver.findElement(By.xpath("//input[@type='search']")).sendKeys(shortName);
+        Thread.sleep(2000);
         offerPageProductName = driver.findElement(By.cssSelector("tr td:nth-child(1)")).getText();
     }
 
