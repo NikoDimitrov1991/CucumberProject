@@ -5,6 +5,7 @@ import io.cucumber.java.en.Then;
 import org.openqa.selenium.By;
 import org.picocontainer.annotations.Inject;
 import org.testng.Assert;
+import pageObjects.OffersPage;
 import utils.TestContextSetup;
 
 import java.util.Iterator;
@@ -19,9 +20,10 @@ public class OfferPageStepDefinition {
     @Then("user search for {string} shortname in offers page")
     public void user_search_for_same_shortname_in_offers_page(String shortName) throws InterruptedException {
         switchToOfferPage();
-        testContextSetup.driver.findElement(By.xpath("//input[@type='search']")).sendKeys(shortName);
+        OffersPage offersPage = new OffersPage(testContextSetup.driver);
+        offersPage.searchItem(shortName);
         Thread.sleep(2000);
-        offerPageProductName = testContextSetup.driver.findElement(By.cssSelector("tr td:nth-child(1)")).getText();
+        offerPageProductName = offersPage.getProductName();
     }
 
     public void switchToOfferPage() {
