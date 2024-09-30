@@ -24,7 +24,7 @@ public class OfferPageStepDefinition {
         offerPageProductName = testContextSetup.driver.findElement(By.cssSelector("tr td:nth-child(1)")).getText();
     }
 
-    public void switchToOfferPage()  {
+    public void switchToOfferPage() {
         if (!testContextSetup.driver.getCurrentUrl().equalsIgnoreCase("https://rahulshettyacademy.com/seleniumPractise/#/offers")) {
             testContextSetup.driver.findElement(By.linkText("Top Deals")).click();
             Set<String> s1 = testContextSetup.driver.getWindowHandles();
