@@ -2,9 +2,9 @@ package stepDefinitions;
 
 
 import io.cucumber.java.en.Then;
-import org.openqa.selenium.By;
 import org.picocontainer.annotations.Inject;
 import org.testng.Assert;
+import pageObjects.LandingPage;
 import pageObjects.OffersPage;
 import utils.TestContextSetup;
 
@@ -28,7 +28,8 @@ public class OfferPageStepDefinition {
 
     public void switchToOfferPage() {
         if (!testContextSetup.driver.getCurrentUrl().equalsIgnoreCase("https://rahulshettyacademy.com/seleniumPractise/#/offers")) {
-            testContextSetup.driver.findElement(By.linkText("Top Deals")).click();
+            LandingPage landingPage = new LandingPage(testContextSetup.driver);
+            landingPage.selectTopDeals();
             Set<String> s1 = testContextSetup.driver.getWindowHandles();
             Iterator<String> iterator = s1.iterator();
             String parentWindow = iterator.next();

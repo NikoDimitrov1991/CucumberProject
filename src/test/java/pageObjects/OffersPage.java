@@ -15,6 +15,7 @@ public class OffersPage {
     By productName = By.cssSelector("tr td:nth-child(1)");
 
 
+
     public void searchItem(String name) {
         driver.findElement(search).sendKeys(name);
     }
