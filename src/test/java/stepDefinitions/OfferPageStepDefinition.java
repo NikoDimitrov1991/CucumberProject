@@ -6,38 +6,30 @@ import org.picocontainer.annotations.Inject;
 import org.testng.Assert;
 import pageObjects.LandingPage;
 import pageObjects.OffersPage;
-import pageObjects.PageObjectManager;
 import utils.TestContextSetup;
 
-import java.util.Iterator;
-import java.util.Set;
 
 public class OfferPageStepDefinition {
     public String offerPageProductName;
-    PageObjectManager pageObjectManager;
 
     @Inject
     TestContextSetup testContextSetup;
 
-    @Then("user search for {string} shortname in offers page")
+    @Then("^user search for (.+) shortname in offers page$")
     public void user_search_for_same_shortname_in_offers_page(String shortName) throws InterruptedException {
         switchToOfferPage();
-        OffersPage offersPage = new OffersPage(testContextSetup.driver);
+        OffersPage offersPage = testContextSetup.pageObjectManager.getOffersPage();
         offersPage.searchItem(shortName);
         Thread.sleep(2000);
         offerPageProductName = offersPage.getProductName();
     }
 
     public void switchToOfferPage() {
-        if (!testContextSetup.driver.getCurrentUrl().equalsIgnoreCase("https://rahulshettyacademy.com/seleniumPractise/#/offers")) {
+//        if (!testContextSetup.driver.getCurrentUrl().contains("/seleniumPractise/#/offers")) {
             LandingPage landingPage = testContextSetup.pageObjectManager.getLandingPage();
             landingPage.selectTopDeals();
-            Set<String> s1 = testContextSetup.driver.getWindowHandles();
-            Iterator<String> iterator = s1.iterator();
-            String parentWindow = iterator.next();
-            String childWindow = iterator.next();
-            testContextSetup.driver.switchTo().window(childWindow);
-        }
+            testContextSetup.genericUtils.SwitchWindowToChild();
+//        }
     }
 
     @Then("validate product name in offers page matches with Landing Page")
