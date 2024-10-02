@@ -2,6 +2,8 @@ package utils;
 
 import pageObjects.PageObjectManager;
 
+import java.io.IOException;
+
 
 public class TestContextSetup {
     public TestBase testBase;
@@ -10,7 +12,7 @@ public class TestContextSetup {
     public GenericUtils genericUtils;
 
 
-    public TestContextSetup() {
+    public TestContextSetup() throws IOException {
      testBase = new TestBase();
      pageObjectManager = new PageObjectManager(testBase.WebDriverManager());
      genericUtils = new GenericUtils(testBase.WebDriverManager());
