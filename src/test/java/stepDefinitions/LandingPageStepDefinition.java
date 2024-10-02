@@ -3,13 +3,12 @@ package stepDefinitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 
-import org.openqa.selenium.chrome.ChromeOptions;
 import pageObjects.LandingPage;
 import utils.TestContextSetup;
 
 public class LandingPageStepDefinition {
 
-    ChromeOptions options = new ChromeOptions();
+
     LandingPage landingPage;
     TestContextSetup testContextSetup;
 
@@ -21,7 +20,6 @@ public class LandingPageStepDefinition {
 
     @Given("user is on GreenCard Landing page")
     public void user_is_on_green_card_landing_page() {
-        options.addArguments("--disable-search-engine-choice-screen");
     }
 
     @When("^user searched with shortname (.+) and extract actual name of product$")
