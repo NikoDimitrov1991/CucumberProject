@@ -3,20 +3,18 @@ package stepDefinitions;
 import io.cucumber.java.en.Then;
 import org.testng.Assert;
 import pageObjects.CheckoutPage;
-import pageObjects.LandingPage;
 import utils.TestContextSetup;
 
 public class CheckoutPageStepDefinition {
 
 
     public CheckoutPage checkoutPage;
-    LandingPage landingPage;
     TestContextSetup testContextSetup;
 
     // Constructor injection
     public CheckoutPageStepDefinition(TestContextSetup testContextSetup) {
         this.testContextSetup = testContextSetup;
-        this.landingPage = testContextSetup.pageObjectManager.getLandingPage();
+        this.checkoutPage = testContextSetup.pageObjectManager.getCheckoutPage();
     }
 
     @Then("verify user has ability to enter promo code and place the order")
