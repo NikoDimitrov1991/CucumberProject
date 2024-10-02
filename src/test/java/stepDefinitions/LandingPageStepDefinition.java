@@ -2,7 +2,7 @@ package stepDefinitions;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
-
+import org.testng.Assert;
 import pageObjects.LandingPage;
 import utils.TestContextSetup;
 
@@ -12,14 +12,15 @@ public class LandingPageStepDefinition {
     LandingPage landingPage;
     TestContextSetup testContextSetup;
 
-    // Constructor injection
     public LandingPageStepDefinition(TestContextSetup testContextSetup) {
         this.testContextSetup = testContextSetup;
-        landingPage = testContextSetup.pageObjectManager.getLandingPage();
+        this.landingPage = testContextSetup.pageObjectManager.getLandingPage();
     }
 
     @Given("user is on GreenCard Landing page")
     public void user_is_on_green_card_landing_page() {
+        Assert.assertTrue(landingPage.getLandingPageTitle().contains("GreenKart"));
+
     }
 
     @When("^user searched with shortname (.+) and extract actual name of product$")

@@ -29,4 +29,8 @@ public class LandingPage {
 
    }
 
+    public String getLandingPageTitle() {
+        return driver.getTitle();
+    }
+
 }
