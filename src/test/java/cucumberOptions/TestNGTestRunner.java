@@ -8,7 +8,8 @@ import org.testng.annotations.DataProvider;
         glue = "stepDefinitions",
         monochrome = true, tags = "@PlaceOrder or @OffersPage",
         plugin = {"html:target/cucumberReport.html",
-                "json:target/cucumber.json", "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"})
+                "json:target/cucumber.json", "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:",
+                "rerun:target/failed_scenarios.txt"})
 public class TestNGTestRunner extends AbstractTestNGCucumberTests {
 
     @Override
