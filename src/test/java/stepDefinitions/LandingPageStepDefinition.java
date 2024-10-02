@@ -30,4 +30,11 @@ public class LandingPageStepDefinition {
         testContextSetup.landingPageProductName = landingPage.getProductName().split("-")[0].trim();
         System.out.println(testContextSetup.landingPageProductName + " is extracted from Home page");
     }
+
+    @When("Added {string} items of the selected product to cart")
+    public void added_items_of_the_selected_product_to_cart(String quantity) {
+        landingPage.incrementQuantity(Integer.parseInt(quantity));
+        landingPage.addToCart();
+
+    }
 }
