@@ -6,6 +6,7 @@ import org.picocontainer.annotations.Inject;
 import org.testng.Assert;
 import pageObjects.LandingPage;
 import pageObjects.OffersPage;
+import pageObjects.PageObjectManager;
 import utils.TestContextSetup;
 
 import java.util.Iterator;
@@ -13,6 +14,7 @@ import java.util.Set;
 
 public class OfferPageStepDefinition {
     public String offerPageProductName;
+    PageObjectManager pageObjectManager;
 
     @Inject
     TestContextSetup testContextSetup;
@@ -28,7 +30,7 @@ public class OfferPageStepDefinition {
 
     public void switchToOfferPage() {
         if (!testContextSetup.driver.getCurrentUrl().equalsIgnoreCase("https://rahulshettyacademy.com/seleniumPractise/#/offers")) {
-            LandingPage landingPage = new LandingPage(testContextSetup.driver);
+            LandingPage landingPage = testContextSetup.pageObjectManager.getLandingPage();
             landingPage.selectTopDeals();
             Set<String> s1 = testContextSetup.driver.getWindowHandles();
             Iterator<String> iterator = s1.iterator();

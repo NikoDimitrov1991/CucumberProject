@@ -29,7 +29,7 @@ public class LandingPageStepDefinition {
 
     @When("user searched with shortname {string} and extract actual name of product")
     public void user_searched_with_shortname_and_extract_actual_name_of_product(String shortName) throws InterruptedException {
-        LandingPage landingPage = new LandingPage(testContextSetup.driver);
+        LandingPage landingPage = testContextSetup.pageObjectManager.getLandingPage();
         landingPage.searchItem(shortName);
         Thread.sleep(2000);
         testContextSetup.landingPageProductName = landingPage.getProductName().split("-")[0].trim();
